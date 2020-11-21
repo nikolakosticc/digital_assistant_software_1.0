@@ -1,1 +1,1 @@
-A
+ja sam baja iz kraja
