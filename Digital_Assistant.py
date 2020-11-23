@@ -6,10 +6,10 @@ import tkinter as tk
 from datetime import datetime
 from tkcalendar import Calendar, DateEntry
 from tkinter import messagebox
-from datetime import date
 import datetime
 import time
 import webbrowser
+from playsound import playsound
 
 
 #Set up the Program
@@ -57,9 +57,53 @@ cursor="hand1", year=2020, month=8, day=11)
 Calendar_Interface_Label.place(x=700, y=250)
 
 
+#Alarm
+
+def alarm():
+    
+    #Set up the program
+
+    root = tkinter.Tk()
+    root.title("Alarm")
+    root.geometry("400x270")
+    root.resizable(width=False, height=False)
+    root.configure(bg="#323999")
+
+    Alarm_Label = Label(root, text="Alarm", font=("Century Gothic", 20), fg="#fff", bg="#3841c7", width=300)
+    Alarm_Label.pack(side='top')
+        
+    Hours = Entry(root, font=("Century Gothic", 15), width=4)
+    Hours.place(x=50, y=100)
+
+    Minutes = Entry(root, font=("Century Gothic", 15), width=4)
+    Minutes.place(x=200, y=100)
+
+    Hours_Label = Label(root, text="Hours", font=("Century Gothic", 20), fg="#fff", bg="#323999")
+    Hours_Label.place(x=100, y=90)
+
+    Minutes_Label = Label(root, text="Minutes", font=("Century Gothic", 20), fg="#fff", bg="#323999")
+    Minutes_Label.place(x=250, y=90)
+
+    def activate_alarm():
+        Hours_Info = int(Hours.get())
+        Minutes_Info = int(Minutes.get())
+        while True:
+            if Hours_Info == datetime.datetime.now().hour and Minutes_Info == datetime.datetime.now().minute:
+                playsound("alarm.mp3")
+                break
+
+    Enter_Button = Button(root, text="Enter", font=("Century Gothic", 15),
+    fg="#fff", bg="#3841c7", width=10, command=activate_alarm, relief=FLAT)
+    Enter_Button.place(x=135, y=200)
+
+    root.mainloop()
+
+
 #Menu Bar
+
 menubar = Menu(root)
 menubar.add_command(label="File")
+menubar.add_command(label="Alarm", command=alarm)
 
 root.config(menu=menubar)
 
@@ -131,9 +175,9 @@ button1.place(x=900, y=2)
 
 #Buttons
 
-Send_Button = Button(root, text="Enter", font=("Century Gothic", 15),
+Enter_Button = Button(root, text="Enter", font=("Century Gothic", 15),
                      fg="#fff", bg="#3841c7", width=10, command=show_answer, relief=FLAT)
-Send_Button.place(x=400, y=450)
+Enter_Button.place(x=400, y=450)
 
 Reset_Button = Button(root, text="Reset", font=("Century Gothic", 15),
                       fg="#fff", bg="#3841c7", width=10, command=show_answer, relief=FLAT)
