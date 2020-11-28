@@ -156,6 +156,10 @@ def show_answer():
         webbrowser.open("www.apple.com")
 
 
+def delete_answer():
+    Text_Entry.delete(0, 'end')
+
+
 #User Picture
 
 img = ImageTk.PhotoImage(Image.open("pic.png"))
@@ -180,7 +184,7 @@ Enter_Button = Button(root, text="Enter", font=("Century Gothic", 15),
 Enter_Button.place(x=400, y=450)
 
 Reset_Button = Button(root, text="Reset", font=("Century Gothic", 15),
-                      fg="#fff", bg="#3841c7", width=10, command=show_answer, relief=FLAT)
+                      fg="#fff", bg="#3841c7", width=10, command=delete_answer, relief=FLAT)
 Reset_Button.place(x=550, y=450)
 
 
